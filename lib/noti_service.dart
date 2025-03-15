@@ -27,7 +27,7 @@ class NotiService {
   NotificationDetails notificationDetails() {
     return const NotificationDetails(
       android: AndroidNotificationDetails(
-          'daily channel id', 'Daily Notification',
+          'daily_channel_id', 'Daily Notification',
           channelDescription: 'Daily Notification Channel',
           importance: Importance.max,
           priority: Priority.high),
