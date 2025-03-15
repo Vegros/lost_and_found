@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lost_and_found/widgets/add_lost_item.dart';
+import 'package:lost_and_found/widgets/found_items.dart';
+import 'package:lost_and_found/widgets/main_layout.dart';
 
 void main() {
   runApp(const MainApp());
@@ -12,16 +14,16 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Lost and Found',
-      theme: ThemeData.dark().copyWith(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 147, 229, 250),
-          brightness: Brightness.dark,
-          surface: const Color.fromARGB(255, 42, 51, 59),
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.transparent,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
         ),
-        scaffoldBackgroundColor: const Color.fromARGB(255, 50, 58, 60),
       ),
       debugShowCheckedModeBanner: false,
-      home: const AddLostItem(),
+      home: const MainLayout(),
     );
   }
 }

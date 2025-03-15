@@ -4,6 +4,10 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lost_and_found/models/lost_Item.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:lost_and_found/noti_service.dart';
+import 'package:lost_and_found/widgets/found_items.dart';
+import 'package:lost_and_found/widgets/main_layout.dart';
 
 class AddLostItem extends StatefulWidget {
   const AddLostItem({super.key});
@@ -72,18 +76,17 @@ class _LostItemsState extends State<AddLostItem> {
 
       Map<String, dynamic> response_data = json.decode(response.body);
 
-      if (!context.mounted) return;
-
-      var newLostItem = LostItem(
-        id: response_data['name'],
-        date: DateTime.now().toIso8601String(),
-        name: _enteredItemName,
-        image: base64Image,
-        contactName: _enteredName,
-        contactEmail: _enteredEmail,
-        contactPhone: _enteredPhone,
+      NotiService().showNotifications(
+        title: 'Item Added',
+        body: 'Your item has been added successfully!',
       );
-      // Navigator.of(context).pop(newLostItem);
+
+      if (!context.mounted) return;
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const MainLayout()),
+        (route) => false,
+      );
     }
   }
 
@@ -113,7 +116,7 @@ class _LostItemsState extends State<AddLostItem> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Lost & Found Home'),
+        title: const Text('Lost & Found'),
         centerTitle: true,
       ),
       body: LayoutBuilder(
@@ -255,31 +258,6 @@ class _LostItemsState extends State<AddLostItem> {
           );
         },
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: 'Add',
-          ),
-        ],
-      ),
     );
   }
 }
-
-
-
-    // if (_selectedImage != null)
-    //             ClipRRect(
-    //               borderRadius: BorderRadius.circular(30),
-    //               child: Image.file(
-    //                 _selectedImage!,
-    //                 width: 200,
-    //                 height: 200,
-    //                 fit: BoxFit.cover,
-    //               ),
-    //             ),
