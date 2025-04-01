@@ -53,13 +53,12 @@ class _LostItemsState extends State<AddLostItem> {
         return;
       }
       final url = Uri.https(
-          "lost-and-found-9b9cd-default-rtdb.europe-west1.firebasedatabase.app",
-          "lost_items.json");
+        "lost-and-found-9b9cd-default-rtdb.europe-west1.firebasedatabase.app",
+        "lost_items.json",
+      );
       final response = await http.post(
         url,
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: {"Content-Type": "application/json"},
         body: json.encode({
           'date': DateTime.now().toIso8601String(),
           'itemName': _enteredItemName,
@@ -71,10 +70,11 @@ class _LostItemsState extends State<AddLostItem> {
       );
       if (response.statusCode != 200 && response.statusCode != 201) {
         throw Exception(
-            "Failed to save item. Status code: ${response.statusCode}");
+          "Failed to save item. Status code: ${response.statusCode}",
+        );
       }
 
-      Map<String, dynamic> response_data = json.decode(response.body);
+      Map<String, dynamic> responseData = json.decode(response.body);
 
       NotiService().showNotifications(
         title: 'Item Added',
@@ -91,8 +91,9 @@ class _LostItemsState extends State<AddLostItem> {
   }
 
   Future _pickImageFromGallery() async {
-    final returnedImage =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+    final returnedImage = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
 
     if (returnedImage == null) return;
 
@@ -102,8 +103,9 @@ class _LostItemsState extends State<AddLostItem> {
   }
 
   Future _pickImageFromCamera() async {
-    final returnedImage =
-        await ImagePicker().pickImage(source: ImageSource.camera);
+    final returnedImage = await ImagePicker().pickImage(
+      source: ImageSource.camera,
+    );
 
     if (returnedImage == null) return;
 
@@ -115,10 +117,7 @@ class _LostItemsState extends State<AddLostItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Lost & Found'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text('Lost & Found'), centerTitle: true),
       body: LayoutBuilder(
         builder: (context, constraints) {
           return SingleChildScrollView(
@@ -244,9 +243,13 @@ class _LostItemsState extends State<AddLostItem> {
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 40, vertical: 15),
+                          horizontal: 40,
+                          vertical: 15,
+                        ),
                         textStyle: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       child: const Text('Mark Item as Lost'),
                     ),

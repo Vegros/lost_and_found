@@ -1,5 +1,3 @@
-import 'dart:io';
-
 class LostItem {
   const LostItem({
     required this.id,

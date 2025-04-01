@@ -3,7 +3,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 class NotiService {
   final notificationPlugin = FlutterLocalNotificationsPlugin();
 
-  bool _isInitialized = false;
+  final bool _isInitialized = false;
   bool get isInitialized => _isInitialized;
 
   Future<void> initNotification() async {
@@ -27,10 +27,13 @@ class NotiService {
   NotificationDetails notificationDetails() {
     return const NotificationDetails(
       android: AndroidNotificationDetails(
-          'daily_channel_id', 'Daily Notification',
-          channelDescription: 'Daily Notification Channel',
-          importance: Importance.max,
-          priority: Priority.high),
+        'daily_channel_id',
+        'Daily Notification',
+        channelDescription: 'Daily Notification Channel',
+        importance: Importance.max,
+        priority: Priority.high,
+        icon: '@mipmap/ic_launcher',
+      ),
       iOS: DarwinNotificationDetails(),
     );
   }

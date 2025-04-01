@@ -104,24 +104,27 @@ class _FoundItemsState extends State<FoundItems> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Items Found",
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+        title: const Text(
+          "Items Found",
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
       ),
       body: RefreshIndicator(
         onRefresh: loadItem,
-        child: isLoading
-            ? const Center(child: CircularProgressIndicator())
-            : lostItems.isEmpty
+        child:
+            isLoading
+                ? const Center(child: CircularProgressIndicator())
+                : lostItems.isEmpty
                 ? const Center(child: Text('No Items in the list'))
                 : ListView.builder(
-                    padding: const EdgeInsets.all(10),
-                    itemCount: lostItems.length,
-                    itemBuilder: (context, index) {
-                      final item = lostItems[index];
-                      return _buildLostItemCard(item);
-                    },
-                  ),
+                  padding: const EdgeInsets.all(10),
+                  itemCount: lostItems.length,
+                  itemBuilder: (context, index) {
+                    final item = lostItems[index];
+                    return _buildLostItemCard(item);
+                  },
+                ),
       ),
     );
   }
@@ -148,24 +151,27 @@ class _FoundItemsState extends State<FoundItems> {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: imageBytes != null
-                      ? Image.memory(
-                          imageBytes,
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        )
-                      : const Icon(
-                          Icons.image_not_supported,
-                          size: 100,
-                          color: Colors.white,
-                        ),
+                  child:
+                      imageBytes != null
+                          ? Image.memory(
+                            imageBytes,
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          )
+                          : const Icon(
+                            Icons.image_not_supported,
+                            size: 100,
+                            color: Colors.white,
+                          ),
                 ),
                 const SizedBox(width: 15),
                 Text(
                   item.name,
                   style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.bold),
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
@@ -179,9 +185,13 @@ class _FoundItemsState extends State<FoundItems> {
               children: [
                 const Icon(Icons.person, color: Colors.purple),
                 const SizedBox(width: 5),
-                Text(item.contactName,
-                    style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.bold)),
+                Text(
+                  item.contactName,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 const Spacer(),
                 GestureDetector(
                   onTap: () => launchUrl(Uri.parse("tel:${item.contactPhone}")),
@@ -189,11 +199,14 @@ class _FoundItemsState extends State<FoundItems> {
                     children: [
                       const Icon(Icons.phone, color: Colors.blue),
                       const SizedBox(width: 5),
-                      Text(item.contactPhone,
-                          style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              decoration: TextDecoration.underline)),
+                      Text(
+                        item.contactPhone,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -207,11 +220,14 @@ class _FoundItemsState extends State<FoundItems> {
                   const Icon(Icons.email, color: Colors.blue),
                   const SizedBox(width: 5),
                   Expanded(
-                    child: Text(item.contactEmail,
-                        style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            decoration: TextDecoration.underline)),
+                    child: Text(
+                      item.contactEmail,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
                   ),
                 ],
               ),
