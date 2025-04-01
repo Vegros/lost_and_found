@@ -32,6 +32,7 @@ class NotiService {
         channelDescription: 'Daily Notification Channel',
         importance: Importance.max,
         priority: Priority.high,
+        icon: '@mipmap/ic_launcher',
       ),
       iOS: DarwinNotificationDetails(),
     );
