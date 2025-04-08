@@ -1,4 +1,7 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:permission_handler/permission_handler.dart';
+
 
 class NotiService {
   final notificationPlugin = FlutterLocalNotificationsPlugin();
@@ -9,6 +12,12 @@ class NotiService {
   Future<void> initNotification() async {
     if (_isInitialized) return;
 
+    final status  = await Permission.notification.request(); 
+    
+    if (status != PermissionStatus.granted) {
+      print('Notification permission not granted.');
+      return;
+  }
     const initSettingsAndroid = AndroidInitializationSettings('app_icon');
     const initSettingsIOS = DarwinInitializationSettings(
       requestAlertPermission: true,

@@ -8,6 +8,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:lost_and_found/noti_service.dart';
 import 'package:lost_and_found/widgets/found_items.dart';
 import 'package:lost_and_found/widgets/main_layout.dart';
+import 'package:permission_handler/permission_handler.dart';
+
 
 class AddLostItem extends StatefulWidget {
   const AddLostItem({super.key});
@@ -91,6 +93,13 @@ class _LostItemsState extends State<AddLostItem> {
   }
 
   Future _pickImageFromGallery() async {
+    final status  = await Permission.photos.request();
+    
+    if (status != PermissionStatus.granted) {
+      print('Gallery permission not granted.');
+      return;
+  }
+
     final returnedImage = await ImagePicker().pickImage(
       source: ImageSource.gallery,
     );
@@ -103,6 +112,12 @@ class _LostItemsState extends State<AddLostItem> {
   }
 
   Future _pickImageFromCamera() async {
+    final status  = await Permission.camera.request();
+
+    if (status != PermissionStatus.granted) {
+      print('Gallery permission not granted.');
+      return;
+  }
     final returnedImage = await ImagePicker().pickImage(
       source: ImageSource.camera,
     );

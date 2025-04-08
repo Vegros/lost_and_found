@@ -20,7 +20,7 @@ class _MainLayoutState extends State<MainLayout> {
   void _onItemTapped(int index) async {
     if (index == 1) {
       setState(() {
-        _selectedIndex = 1; // Switch to AddLostItem in the same screen
+        _selectedIndex = 1; 
       });
     } else {
       setState(() {

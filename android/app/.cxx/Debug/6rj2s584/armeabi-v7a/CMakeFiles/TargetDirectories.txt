@@ -1,2 +1,0 @@
-/Users/mattiastonna/Desktop/assignments/cpd/lost_and_found/android/app/.cxx/Debug/6rj2s584/armeabi-v7a/CMakeFiles/edit_cache.dir
-/Users/mattiastonna/Desktop/assignments/cpd/lost_and_found/android/app/.cxx/Debug/6rj2s584/armeabi-v7a/CMakeFiles/rebuild_cache.dir
